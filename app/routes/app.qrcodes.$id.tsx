@@ -32,6 +32,7 @@ import { ImageMajor } from "@shopify/polaris-icons";
 import { useEffect, useState } from "react";
 import { authenticate } from "../shopify.server";
 
+import { useLoadingByAction } from "~/hooks";
 import { parseFormData } from "~/utils";
 import db from "../db.server";
 import { getQRCode, validateQRCode } from "../models/QRCode.server";
@@ -126,7 +127,8 @@ export default function QRCodeForm() {
 
   const nav = useNavigation();
   useEffect(() => {
-    console.log("parseFormData: ", parseFormData(nav.formData));
+    console.log("nav: ", nav);
+    console.log("nav.formData: ", parseFormData(nav.formData));
   }, [nav]);
   /**
    * isDirty ：确定表单是否已更改。
@@ -134,10 +136,8 @@ export default function QRCodeForm() {
    * isSaving 和 isDeleting ：使用 useNavigation 跟踪网络状态。
    * 此状态用于禁用按钮并显示加载状态。
    */
-  const isSaving =
-    nav.state === "submitting" && nav.formData?.get("action") !== "delete";
-  const isDeleting =
-    nav.state === "submitting" && nav.formData?.get("action") === "delete";
+  const isSaving = useLoadingByAction();
+  const isDeleting = useLoadingByAction("delete");
 
   const navigate = useNavigate();
 
