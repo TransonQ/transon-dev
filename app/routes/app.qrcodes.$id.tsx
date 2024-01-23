@@ -1,37 +1,38 @@
-import { useState } from "react";
 import {
-  type ActionFunctionArgs,
-  type LoaderFunctionArgs,
   json,
   redirect,
+  type ActionFunctionArgs,
+  type LoaderFunctionArgs,
 } from "@remix-run/node";
 import {
   useActionData,
   useLoaderData,
+  useNavigate,
   useNavigation,
   useSubmit,
-  useNavigate,
 } from "@remix-run/react";
-import { authenticate } from "../shopify.server";
 import {
-  Card,
   Bleed,
+  BlockStack,
   Button,
+  Card,
   ChoiceList,
   Divider,
   EmptyState,
-  InlineStack,
   InlineError,
+  InlineStack,
   Layout,
   Page,
+  PageActions,
   Text,
   TextField,
   Thumbnail,
-  BlockStack,
-  PageActions,
 } from "@shopify/polaris";
 import { ImageMajor } from "@shopify/polaris-icons";
+import { useEffect, useState } from "react";
+import { authenticate } from "../shopify.server";
 
+import { parseFormData } from "~/utils";
 import db from "../db.server";
 import { getQRCode, validateQRCode } from "../models/QRCode.server";
 
@@ -124,6 +125,9 @@ export default function QRCodeForm() {
   const isDirty = JSON.stringify(formState) !== JSON.stringify(cleanFormState);
 
   const nav = useNavigation();
+  useEffect(() => {
+    console.log("parseFormData: ", parseFormData(nav.formData));
+  }, [nav]);
   /**
    * isDirty ：确定表单是否已更改。
    * 这用于在应用程序用户更改表单内容时启用保存按钮，或在表单内容未更改时禁用它们。
