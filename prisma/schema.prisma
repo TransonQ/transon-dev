@@ -22,13 +22,13 @@ model Session {
 }
 
 model QRCode {
-  id               Int      @id @default(autoincrement())
-  title            String
-  shop             String
-  productId        String
-  productHandle    String
-  productVariantId String
-  destination      String
-  scans            Int      @default(0)
-  createdAt        DateTime @default(now())
+  id               Int      @id @default(autoincrement()) // 表的主键。
+  title            String                                 // 应用程序用户指定的 QR 码名称。
+  shop             String                                 // 拥有二维码的商店。
+  productId        String                                 // 该二维码所属的产品。
+  productHandle    String                                 // 用于创建 QR 码的目标 URL。
+  productVariantId String                                 // 用于创建 QR 码的目标 URL。
+  destination      String                                 // 二维码的目的地。
+  scans            Int      @default(0)                   // 二维码被扫描的次数。
+  createdAt        DateTime @default(now())               // 创建二维码的日期和时间。
 }
