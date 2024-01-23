@@ -9,19 +9,19 @@ importers:
   .:
     dependencies:
       '@prisma/client':
-        specifier: ^4.13.0
-        version: 4.16.2(prisma@4.16.2)
+        specifier: ^5.8.1
+        version: 5.8.1(prisma@5.8.1)
       '@remix-run/dev':
-        specifier: ^2.0.0
+        specifier: ^2.5.1
         version: 2.5.1(@remix-run/serve@2.5.1)(@types/node@20.11.5)(typescript@5.3.3)
       '@remix-run/node':
-        specifier: ^2.0.0
+        specifier: ^2.5.1
         version: 2.5.1(typescript@5.3.3)
       '@remix-run/react':
-        specifier: ^2.0.0
+        specifier: ^2.5.1
         version: 2.5.1(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
       '@remix-run/serve':
-        specifier: ^2.0.0
+        specifier: ^2.5.1
         version: 2.5.1(typescript@5.3.3)
       '@shopify/app':
         specifier: 3.53.1
@@ -30,23 +30,23 @@ importers:
         specifier: 3.53.1
         version: 3.53.1(@types/node@20.11.5)(@types/react@18.2.48)(typescript@5.3.3)(zod@3.22.4)
       '@shopify/polaris':
-        specifier: ^12.0.0
+        specifier: ^12.10.0
         version: 12.10.0(react-dom@18.2.0)(react@18.2.0)
       '@shopify/shopify-api':
-        specifier: ^9.0.1
+        specifier: ^9.0.2
         version: 9.0.2
       '@shopify/shopify-app-remix':
         specifier: ^2.3.0
         version: 2.3.0(@remix-run/react@2.5.1)(@shopify/polaris@12.10.0)(react@18.2.0)(typescript@5.3.3)
       '@shopify/shopify-app-session-storage-prisma':
         specifier: ^2.0.3
-        version: 2.0.3(@prisma/client@4.16.2)(@shopify/shopify-api@9.0.2)(@shopify/shopify-app-session-storage@2.0.3)(prisma@4.16.2)
+        version: 2.0.3(@prisma/client@5.8.1)(@shopify/shopify-api@9.0.2)(@shopify/shopify-app-session-storage@2.0.3)(prisma@5.8.1)
       isbot:
         specifier: ^4.1.0
         version: 4.4.0
       prisma:
-        specifier: ^4.13.0
-        version: 4.16.2
+        specifier: ^5.8.1
+        version: 5.8.1
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -55,7 +55,7 @@ importers:
         version: 18.2.0(react@18.2.0)
     devDependencies:
       '@remix-run/eslint-config':
-        specifier: ^2.0.0
+        specifier: ^2.5.1
         version: 2.5.1(eslint@8.56.0)(react@18.2.0)(typescript@5.3.3)
       '@shopify/api-codegen-preset':
         specifier: ^0.0.1
@@ -64,28 +64,28 @@ importers:
         specifier: ^0.0.3
         version: 0.0.3
       '@types/eslint':
-        specifier: ^8.40.0
+        specifier: ^8.56.2
         version: 8.56.2
       '@types/node':
-        specifier: ^20.6.3
+        specifier: ^20.11.5
         version: 20.11.5
       '@types/react':
-        specifier: ^18.2.31
+        specifier: ^18.2.48
         version: 18.2.48
       '@types/react-dom':
-        specifier: ^18.2.14
+        specifier: ^18.2.18
         version: 18.2.18
       eslint:
-        specifier: ^8.42.0
+        specifier: ^8.56.0
         version: 8.56.0
       eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.10.0(eslint@8.56.0)
+        specifier: ^9.1.0
+        version: 9.1.0(eslint@8.56.0)
       prettier:
         specifier: ^2.8.8
         version: 2.8.8
       typescript:
-        specifier: ^5.2.2
+        specifier: ^5.3.3
         version: 5.3.3
 
 packages:
@@ -2682,9 +2682,9 @@ packages:
       config-chain: 1.1.13
     dev: false
 
-  /@prisma/client@4.16.2(prisma@4.16.2):
-    resolution: {integrity: sha512-qCoEyxv1ZrQ4bKy39GnylE8Zq31IRmm8bNhNbZx7bF2cU5aiCCnSa93J2imF88MBjn7J9eUQneNxUQVJdl/rPQ==}
-    engines: {node: '>=14.17'}
+  /@prisma/client@5.8.1(prisma@5.8.1):
+    resolution: {integrity: sha512-xQtMPfbIwLlbm0VVIVQY2yqQVOxPwRQhvIp7Z3m2900g1bu/zRHKhYZJQWELqmjl6d8YwBy0K2NvMqh47v1ubw==}
+    engines: {node: '>=16.13'}
     requiresBuild: true
     peerDependencies:
       prisma: '*'
@@ -2692,17 +2692,39 @@ packages:
       prisma:
         optional: true
     dependencies:
-      '@prisma/engines-version': 4.16.1-1.4bc8b6e1b66cb932731fb1bdbbc550d1e010de81
-      prisma: 4.16.2
+      prisma: 5.8.1
     dev: false
 
-  /@prisma/engines-version@4.16.1-1.4bc8b6e1b66cb932731fb1bdbbc550d1e010de81:
-    resolution: {integrity: sha512-q617EUWfRIDTriWADZ4YiWRZXCa/WuhNgLTVd+HqWLffjMSPzyM5uOWoauX91wvQClSKZU4pzI4JJLQ9Kl62Qg==}
+  /@prisma/debug@5.8.1:
+    resolution: {integrity: sha512-tjuw7eA0Us3T42jx9AmAgL58rzwzpFGYc3R7Y4Ip75EBYrKMBA1YihuWMcBC92ILmjlQ/u3p8VxcIE0hr+fZfg==}
     dev: false
 
-  /@prisma/engines@4.16.2:
-    resolution: {integrity: sha512-vx1nxVvN4QeT/cepQce68deh/Turxy5Mr+4L4zClFuK1GlxN3+ivxfuv+ej/gvidWn1cE1uAhW7ALLNlYbRUAw==}
+  /@prisma/engines-version@5.8.1-1.78caf6feeaed953168c64e15a249c3e9a033ebe2:
+    resolution: {integrity: sha512-f5C3JM3l9yhGr3cr4FMqWloFaSCpNpMi58Om22rjD2DOz3owci2mFdFXMgnAGazFPKrCbbEhcxdsRfspEYRoFQ==}
+    dev: false
+
+  /@prisma/engines@5.8.1:
+    resolution: {integrity: sha512-TJgYLRrZr56uhqcXO4GmP5be+zjCIHtLDK20Cnfg+o9d905hsN065QOL+3Z0zQAy6YD31Ol4u2kzSfRmbJv/uA==}
     requiresBuild: true
+    dependencies:
+      '@prisma/debug': 5.8.1
+      '@prisma/engines-version': 5.8.1-1.78caf6feeaed953168c64e15a249c3e9a033ebe2
+      '@prisma/fetch-engine': 5.8.1
+      '@prisma/get-platform': 5.8.1
+    dev: false
+
+  /@prisma/fetch-engine@5.8.1:
+    resolution: {integrity: sha512-+bgjjoSFa6uYEbAPlklfoVSStOEfcpheOjoBoNsNNSQdSzcwE2nM4Q0prun0+P8/0sCHo18JZ9xqa8gObvgOUw==}
+    dependencies:
+      '@prisma/debug': 5.8.1
+      '@prisma/engines-version': 5.8.1-1.78caf6feeaed953168c64e15a249c3e9a033ebe2
+      '@prisma/get-platform': 5.8.1
+    dev: false
+
+  /@prisma/get-platform@5.8.1:
+    resolution: {integrity: sha512-wnA+6HTFcY+tkykMokix9GiAkaauPC5W/gg0O5JB0J8tCTNWrqpnQ7AsaGRfkYUbeOIioh6woDjQrGTTRf1Zag==}
+    dependencies:
+      '@prisma/debug': 5.8.1
     dev: false
 
   /@remix-run/dev@2.5.1(@remix-run/serve@2.5.1)(@types/node@20.11.5)(typescript@5.3.3):
@@ -3430,7 +3452,7 @@ packages:
       - typescript
     dev: false
 
-  /@shopify/shopify-app-session-storage-prisma@2.0.3(@prisma/client@4.16.2)(@shopify/shopify-api@9.0.2)(@shopify/shopify-app-session-storage@2.0.3)(prisma@4.16.2):
+  /@shopify/shopify-app-session-storage-prisma@2.0.3(@prisma/client@5.8.1)(@shopify/shopify-api@9.0.2)(@shopify/shopify-app-session-storage@2.0.3)(prisma@5.8.1):
     resolution: {integrity: sha512-r8PhxjD+OMbBI9f6JbaiBy/pQrC6BX7QC4T89XUJ3xyaBr/ZfHd+jwxcvXgqwYW1V0saZ08XGXSPWTetJkWVNw==}
     peerDependencies:
       '@prisma/client': ^4.13.0
@@ -3438,10 +3460,10 @@ packages:
       '@shopify/shopify-app-session-storage': ^2.0.3
       prisma: ^4.13.0
     dependencies:
-      '@prisma/client': 4.16.2(prisma@4.16.2)
+      '@prisma/client': 5.8.1(prisma@5.8.1)
       '@shopify/shopify-api': 9.0.2
       '@shopify/shopify-app-session-storage': 2.0.3(@shopify/shopify-api@9.0.2)
-      prisma: 4.16.2
+      prisma: 5.8.1
       tslib: 2.6.2
     dev: false
 
@@ -5595,8 +5617,8 @@ packages:
     engines: {node: '>=12'}
     dev: false
 
-  /eslint-config-prettier@8.10.0(eslint@8.56.0):
-    resolution: {integrity: sha512-SM8AMJdeQqRYT9O9zguiruQZaN7+z+E4eAP9oiLNGKMtomwaB1E9dcgUD6ZAn/eQAb52USbvezbiljfZUhbJcg==}
+  /eslint-config-prettier@9.1.0(eslint@8.56.0):
+    resolution: {integrity: sha512-NSWl5BFQWEPi1j4TjVNItzYV7dZXZ+wP6I6ZhrBGpChQhZRUaElihE9uRRkcbRnNb76UMKDF3r+WTmNcGPKsqw==}
     hasBin: true
     peerDependencies:
       eslint: '>=7.0.0'
@@ -7075,7 +7097,7 @@ packages:
       type-fest: 0.12.0
       widest-line: 4.0.1
       wrap-ansi: 8.1.0
-      ws: 8.13.0
+      ws: 8.16.0
       yoga-wasm-web: 0.3.3
     transitivePeerDependencies:
       - bufferutil
@@ -9343,13 +9365,13 @@ packages:
     resolution: {integrity: sha512-dKp+C4iXWK4vVYZmYSd0KBH5F/h1HoZRsbJ82AVKRO3PEo8L4lBS/vLwhVtpwwuYcoIsVY+1JYKR268yn480uQ==}
     dev: false
 
-  /prisma@4.16.2:
-    resolution: {integrity: sha512-SYCsBvDf0/7XSJyf2cHTLjLeTLVXYfqp7pG5eEVafFLeT0u/hLFz/9W196nDRGUOo1JfPatAEb+uEnTQImQC1g==}
-    engines: {node: '>=14.17'}
+  /prisma@5.8.1:
+    resolution: {integrity: sha512-N6CpjzECnUHZ5beeYpDzkt2rYpEdAeqXX2dweu6BoQaeYkNZrC/WJHM+5MO/uidFHTak8QhkPKBWck1o/4MD4A==}
+    engines: {node: '>=16.13'}
     hasBin: true
     requiresBuild: true
     dependencies:
-      '@prisma/engines': 4.16.2
+      '@prisma/engines': 5.8.1
     dev: false
 
   /proc-log@3.0.0:
@@ -11236,7 +11258,6 @@ packages:
         optional: true
       utf-8-validate:
         optional: true
-    dev: true
 
   /xtend@4.0.2:
     resolution: {integrity: sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==}
