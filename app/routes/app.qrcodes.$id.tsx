@@ -36,6 +36,16 @@ import db from "../db.server";
 import { getQRCode, validateQRCode } from "../models/QRCode.server";
 
 export async function loader({ request, params }: LoaderFunctionArgs) {
+  /**
+   * 验证用户身份
+   * 如果用户未经过身份验证， authenticate.admin 将处理必要的重定向。
+   * 如果用户通过身份验证，则该方法返回一个管理对象。
+   * 您可以将 authenticate.admin 方法用于以下目的：
+   * - 从会话中获取信息，例如 shop 。
+   * - 访问管理 GraphQL API (https://shopify.dev/docs/api/admin-graphql)
+   * - 访问管理 REST API (https://shopify.dev/docs/api/admin-rest)
+   * - 在要求和请求计费的方法中。
+   */
   const { admin } = await authenticate.admin(request);
 
   if (params.id === "new") {
@@ -44,25 +54,37 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
       title: "",
     });
   }
-
+  /**
+   * 返回 JSON 响应
+   * 使用 json util，返回可用于显示QR码数据的 Response 。
+   * 果 id 参数为 new ，则返回带有空标题的 JSON 以及目标的产品。
+   * 如果 id 参数不是 new ，则从 getQRCode 返回 JSON 以填充 QR 码状态。
+   */
   return json(await getQRCode(Number(params.id), admin.graphql));
 }
 
+/**
+ * action 应该使用会话中的存储。这可确保应用程序用户只能创建、更新或删除自己商店的二维码。
+ */
 export async function action({ request, params }: ActionFunctionArgs) {
   const { session } = await authenticate.admin(request);
   const { shop } = session;
 
-  /** @type {any} */
   const data: any = {
     ...Object.fromEntries(await request.formData()),
     shop,
   };
 
+  /**
+   * 如果该操作删除了 QR 码，则将应用程序用户重定向到索引页面。
+   * 如果操作创建 QR 码，则重定向到 app/qrcodes/$id ，其中 $id 是新创建的 QR 码的 ID。
+   */
   if (data.action === "delete") {
     await db.qRCode.delete({ where: { id: Number(params.id) } });
     return redirect("/app");
   }
 
+  // 该操作应使用 validateQRCode 函数返回不完整数据的错误。
   const errors: any = validateQRCode(data);
 
   if (errors) {
@@ -78,14 +100,36 @@ export async function action({ request, params }: ActionFunctionArgs) {
 }
 
 export default function QRCodeForm() {
+  /**
+   * errors ：如果应用用户未填写所有 QR 码表单字段，则该操作将返回要显示的错误。
+   * 这是 validateQRCode 的返回值，可通过 Remix useActionData 挂钩访问。
+   */
   const errors = useActionData<any>()?.errors || {};
 
   const qrCode = useLoaderData<any>();
+  /**
+   * formState ：当用户更改标题、选择产品或更改目的地时，此状态会更新。
+   * 该状态从 useLoaderData 复制到 React 状态。
+   */
   const [formState, setFormState] = useState<any>(qrCode);
+  /**
+   * cleanFormState ：表单的初始状态。仅当用户提交表单时才会更改。
+   * 该状态从 useLoaderData 复制到 React 状态。
+   */
   const [cleanFormState, setCleanFormState] = useState(qrCode);
+  /**
+   * isDirty ：确定表单是否已更改。
+   * 这用于在应用程序用户更改表单内容时启用保存按钮，或在表单内容未更改时禁用它们。
+   */
   const isDirty = JSON.stringify(formState) !== JSON.stringify(cleanFormState);
 
   const nav = useNavigation();
+  /**
+   * isDirty ：确定表单是否已更改。
+   * 这用于在应用程序用户更改表单内容时启用保存按钮，或在表单内容未更改时禁用它们。
+   * isSaving 和 isDeleting ：使用 useNavigation 跟踪网络状态。
+   * 此状态用于禁用按钮并显示加载状态。
+   */
   const isSaving =
     nav.state === "submitting" && nav.formData?.get("action") !== "delete";
   const isDeleting =
@@ -93,6 +137,10 @@ export default function QRCodeForm() {
 
   const navigate = useNavigate();
 
+  /**
+   * 使用 App Bridge ResourcePicker(https://shopify.dev/docs/api/app-bridge-library/reference/resource-picker)
+   * 添加允许用户选择产品的模式。将选择保存到表单状态。
+   */
   async function selectProduct() {
     const products = await window.shopify.resourcePicker({
       type: "product",
@@ -114,6 +162,10 @@ export default function QRCodeForm() {
     }
   }
 
+  /**
+   * 使用 useSubmit Remix 挂钩保存表单数据。
+   * https://remix.run/docs/en/main/hooks/use-submit
+   */
   const submit = useSubmit();
   function handleSave() {
     const data = {
@@ -128,6 +180,9 @@ export default function QRCodeForm() {
     submit(data, { method: "post" });
   }
 
+  /**
+   * 布局
+   */
   return (
     <Page>
       <ui-title-bar title={qrCode.id ? "Edit QR code" : "Create new QR code"}>
