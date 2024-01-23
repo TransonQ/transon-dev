@@ -113,7 +113,7 @@ async function supplementQRCode(qrCode: any, graphql: any) {
  * 添加一个函数，以确保当用户提交表单以创建 QR 码时，所有必填字段都存在值。
  * QR 码表单的操作将从该函数返回错误。
  */
-export function validateQRCode(data: any) {
+export function validateQRCode(data: any): any {
   const errors: any = {};
 
   if (!data.title) {
